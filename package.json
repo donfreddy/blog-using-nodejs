@@ -14,6 +14,7 @@
     "express": "^4.17.1",
     "express-fileupload": "^1.1.7-alpha.3",
     "mongoose": "^5.9.22",
+    "mysql": "^2.18.1",
     "nodemon": "^2.0.4",
     "startbootstrap-clean-blog": "^5.0.9"
   }

@@ -1,7 +1,7 @@
 <%- include('../partials/header'); -%>
 
 <!-- Page Header -->
-<header class="masthead" style="background-image: url('img/home-bg.jpg');">
+<header class="masthead">
   <div class="overlay"></div>
   <div class="container">
     <div class="row">
@@ -19,32 +19,54 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-8 col-md-10 mx-auto">
+      <% if (posts.length > 0) {%>
 
-    <% 
-    posts.forEach(function(post) { %>
-      <div class="post-preview">
-        <a href="/post/<%= post._id %>">
-          <h2 class="post-title">
-            <%= post.title %>
-          </h2>
+        <%
+      posts.forEach((post, index) => { %>
+        <div class="post-preview">
+          <div class="float-right">
+            <div class="dropdown">
+              <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                More
+              </a>
+            
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="#"><i class="fas fa-share-square pr-2"></i>Share</a>
+                <a class="dropdown-item" href="/delete/<%= post.id %>"><i class="fas fa-trash pr-2"></i>Delete</a>
+                <a class="dropdown-item" href="/edit/<%= post.id %>"><i class="fas fa-edit pr-2"></i>Edit</a>
+              </div>
+            </div>
+          </div>
+          <a href="/post/<%= post.id %>">
+            <h2 class="post-title">
+              <%= post.title %>
+            </h2>
+          <h3 class="post-subtitle">
+            <%= post.description %>
+          </h3>
         </a>
         <p class="post-meta">Posted by
-          <a href="#"><%= post.username %></a>
-          on <%= post.createdAt.toDateString() %>
+          <a href="#"><%= post.user_name %></a>
+          on <%= post.createdAt %>
         </p>
       </div> 
       
       <hr />
     <% }); 
     %>
-       <!-- Pager -->
-       <div class="clearfix">
-        <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
-      </div>
+
+    <!-- Pager -->
+    <!-- <div class="clearfix">
+      <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
+    </div> -->
+      <% } else { %>
+          <p class="text-center">No posts found. Go <a href="/posts/new" >here</a> to add posts.</p>
+      <% } %>
       </div>
     </div>
   </div>
 </div>
+
 
 <hr />
 
